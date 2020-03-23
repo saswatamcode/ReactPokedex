@@ -1,0 +1,13 @@
+* {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.stepper {
+  width: 100%;
+}
+.pagination {
+  width: 100%;
+  display: flex;
+  font-family: "Sen", sans-serif;
+}

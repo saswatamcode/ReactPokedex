@@ -3,12 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.9.7",
+    "@material-ui/lab": "^4.0.0-alpha.46",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "google-tts-api": "0.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-image": "^2.4.0",
+    "react-loader-spinner": "^3.1.5",
+    "react-scripts": "3.4.1",
+    "react-speech": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

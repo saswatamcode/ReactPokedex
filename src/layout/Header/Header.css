@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,300&display=swap");
+.Header {
+  background: #bac0bc;
+}
+.rotation {
+  animation: rotation 4s infinite linear;
+  z-index: 0;
+}
+.heading {
+  margin-right: 35%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 6vw;
+  margin-top: 2%;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .heading {
+    margin-top: 10vw;
+    font-size: 48px;
+  }
+}
