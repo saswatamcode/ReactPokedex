@@ -7,6 +7,7 @@ import "./Header.css";
 export default function Header() {
   return (
     <div className="Header">
+
       <img
         src={Pokedex}
         className="pokedex"
@@ -15,7 +16,9 @@ export default function Header() {
         style={{ marginRight: "80%", marginBottom: "-10%", marginTop: "5%" }}
         alt="pokedex"
       />
+
       <h1 className="heading">Pokédex</h1>
+
       <img
         src={Pokeball}
         className="rotation"
@@ -29,6 +32,7 @@ export default function Header() {
         }}
         alt="pokeball"
       />
+      
     </div>
   );
 }

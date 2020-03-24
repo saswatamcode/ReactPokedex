@@ -52,6 +52,7 @@ export default function PokemonList() {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
+  //API call
   useEffect(() => {
     fetch(url, {})
       .then(res => res.json())
@@ -65,24 +66,31 @@ export default function PokemonList() {
 
   return (
     <div className="pokemonlist">
+
       <PokemonModal
         key={selectedPokemon}
         open={open}
         pokemonIndex={selectedPokemon}
         handleClose={handleClose}
       />
+
       {isLoading && <h1>Loading...</h1>}
       {err && <h1>Error</h1>}
+
       <div className={classes.root}>
+
         <Grid container>
+
           {isLoading !== true &&
             pokemonsOnPage.map(pokemon => {
               const pokemonIndex = pokemon.url.split("/")[
                 pokemon.url.split("/").length - 2
               ];
               const imageUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${pokemonIndex}.png?raw=true`;
+
               return (
                 <Grid item xs>
+
                   <Pokemon
                     key={pokemon.name}
                     name={pokemon.name}
@@ -92,14 +100,19 @@ export default function PokemonList() {
                       selectPokemon(pokemonIndex);
                     }}
                   />
+
                 </Grid>
+
               );
             })}
+
         </Grid>
       </div>
+
       <div className="pagination">
         Page {activeStep + 1} of {numPages}
       </div>
+
       <MobileStepper
         className="stepper"
         variant="progress"
@@ -123,6 +136,7 @@ export default function PokemonList() {
           </Button>
         }
       />
+      
     </div>
   );
 }

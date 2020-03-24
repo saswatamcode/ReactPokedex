@@ -4,11 +4,17 @@ import spinner from "./spinner.gif";
 import Img from "react-image";
 
 export default function Pokemon({ name, imageUrl, onClick }) {
+
+  //Loader style
   const [didLoad, setLoad] = React.useState(false);
   const style = didLoad ? {} : { display: "none" };
+
+  //Make first letter uppercase
   name = name.charAt(0).toUpperCase() + name.slice(1);
+
   return (
     <div className="pokemon" onClick={onClick}>
+
       {didLoad !== true ? (
         <img
           src={spinner}
@@ -21,6 +27,10 @@ export default function Pokemon({ name, imageUrl, onClick }) {
           alt="spinner"
         ></img>
       ) : null}
+
+      {//Lazy-loader image
+      }
+      
       <Img
         src={imageUrl + "?" + Date.now.toString("ddMMyyyyhhmmsstt")}
         style={style}
@@ -28,9 +38,11 @@ export default function Pokemon({ name, imageUrl, onClick }) {
         onLoad={() => setLoad(true)}
         alt="pokemon"
       ></Img>
+
       <div className="pokemoninfo">
         <div className="pokename">{name}</div>
       </div>
+
     </div>
   );
 }

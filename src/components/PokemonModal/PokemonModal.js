@@ -14,6 +14,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+//theme colors
 const TYPE_COLORS = {
   bug: "B1C12E",
   dark: "4F3A2D",
@@ -36,12 +37,16 @@ const TYPE_COLORS = {
 };
 
 export default function PokemonModal({ pokemonIndex, open, handleClose }) {
+
+  //Data for both api calls
   const [pokemonRes, setPokemonRes] = useState({});
   const [pokeSpeciesRes, setPokeSpeciesRes] = useState({});
 
+  //Errors
   const [err, setErr] = useState();
   const [speciesErr, setSpeciesErr] = useState();
 
+  //Properties state 
   const [pokeprop, setPokeProp] = useState({
     name: "",
     imageUrl: "",
@@ -67,9 +72,11 @@ export default function PokemonModal({ pokemonIndex, open, handleClose }) {
     themeColor: "#EF5350"
   });
 
+  //API urls
   const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonIndex}/`;
   const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemonIndex}/`;
 
+  //First API
   useEffect(() => {
     fetch(pokemonUrl, {})
       .then(res => res.json())
@@ -79,6 +86,7 @@ export default function PokemonModal({ pokemonIndex, open, handleClose }) {
       .catch(error => setErr(error));
   }, []);
 
+  //Second API
   useEffect(() => {
     fetch(pokemonSpeciesUrl, {})
       .then(res => res.json())
@@ -88,6 +96,7 @@ export default function PokemonModal({ pokemonIndex, open, handleClose }) {
       .catch(error => setSpeciesErr(error));
   }, []);
 
+  //Effect hook to change properties whenever API call made
   useEffect(() => {
     if (
       pokemonRes.name !== undefined &&
@@ -120,7 +129,7 @@ export default function PokemonModal({ pokemonIndex, open, handleClose }) {
         }
       });
 
-      // Convert Decimeters to Feet... The + 0.0001 * 100 ) / 100 is for rounding to two decimal places :)
+      //Parsing API data to make sense
       const height =
         Math.round((pokemonRes.height * 0.328084 + 0.00001) * 100) / 100;
 
@@ -212,8 +221,10 @@ export default function PokemonModal({ pokemonIndex, open, handleClose }) {
     }
   }, [pokemonRes, pokeSpeciesRes]);
 
+
   return (
     <div>
+
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -222,14 +233,19 @@ export default function PokemonModal({ pokemonIndex, open, handleClose }) {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
+
         <DialogTitle id="alert-dialog-slide-title">
+
           <IconButton color="inherit" onClick={handleClose} aria-label="close">
             <CloseIcon />
           </IconButton>
 
           <div className="title">{pokeprop.name}</div>
+
         </DialogTitle>
+
         <DialogContent>
+
           <img
             height="30%"
             width="30%"
@@ -238,9 +254,12 @@ export default function PokemonModal({ pokemonIndex, open, handleClose }) {
             }
             alt="pokemon"
           />
+
           <div className="description">{pokeprop.description}</div>
+
           <hr />
           <br />
+          
           <div className="stats">
             <div>
               HP{" "}
@@ -305,6 +324,7 @@ export default function PokemonModal({ pokemonIndex, open, handleClose }) {
             <br />
             <div className="left">Egg Groups: {pokeprop.eggGroups}</div>
           </div>
+
           <div className="data-right">
             <div className="right">Hatch Steps: {pokeprop.hatchSteps}</div>
             <br />
@@ -331,13 +351,19 @@ export default function PokemonModal({ pokemonIndex, open, handleClose }) {
               );
             })}
           </div>
+
         </DialogContent>
+
         <DialogActions>
+
           <Button onClick={handleClose} color="primary">
             Close
           </Button>
+          
         </DialogActions>
+
       </Dialog>
+
     </div>
   );
 }
